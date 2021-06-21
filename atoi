@@ -1,0 +1,66 @@
+
+
+int myAtoi(char * s){
+
+    int integer, index, i, length, sign;
+    int min, max;
+    min=pow(2,31);
+    max=pow(2,31)-1;
+    double temp;
+    temp=0;
+    min=-1*min-1;
+    integer=0;
+    index=0;
+    length=sizeof(s)/sizeof(s[0])+1;
+    length=strlen(s);
+    printf("length is %d",length);
+    for(i=0;i<length;i++)
+    {
+        
+        if(s[i]!=32)
+        break;
+        index++;
+    }
+    sign=1;
+    if(s[index]=='-')
+    {
+        sign=-1;
+        index++;
+    }
+    
+    if(s[index]=='+')
+    {
+        if(sign==-1)
+            return 0;
+        index++;
+    }
+    
+    
+    
+    if(s[index]<48 || s[index]>57)
+        return 0;
+    
+    for(i=index;i<length;i++)
+    {
+        if(s[i]>=48 && s[i]<=57)
+        {
+
+            temp=temp*10+s[i]-48;
+            if(sign==1){
+                if(temp>max){
+                    return max;}}
+            else if(sign==-1){
+                if(temp*-1<min){
+                    return min;}}
+            printf("integer is %f s[i] is %d\n",temp, s[i]-48);
+        }
+        else
+        break;
+    }
+        
+        
+        
+    
+    integer=temp*sign;
+    return integer;
+}
