@@ -1,0 +1,46 @@
+
+
+int trap(int* height, int heightSize)
+{
+    
+    int i,j,k;
+    int maxheight;
+    int total;
+    total=0;
+    maxheight=0;
+    for(i=0;i<heightSize;i++)
+    {
+        if(height[i]>maxheight)
+            maxheight=height[i];
+    }
+    printf("maxheight is %d size is %d\n",maxheight,heightSize);
+    int marker1, marker2;
+    marker1=-1;
+    marker2=-1;
+    
+    for(j=maxheight;j>0;j--)
+    {
+        for(i=0;i<heightSize;i++)
+        {
+            if(height[i]>=j)
+            {
+                if(marker1==-1)
+                {
+                    marker1=i;
+                }
+                else if(marker1!=-1)
+                {
+                   total+=i-marker1-1;
+                
+                    marker1=-1;
+                    i--;
+                }
+            }    
+        }
+        marker1=-1;
+        marker2=-1;
+    }
+    
+    
+    return total;
+}
